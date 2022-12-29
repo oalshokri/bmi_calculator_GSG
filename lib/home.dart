@@ -13,6 +13,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Gender? selectedGender;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,14 +28,28 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 MyCard(
-                  color: kActiveColor,
+                  onPressed: () {
+                    setState(() {
+                      selectedGender = Gender.male;
+                    });
+                  },
+                  color: selectedGender == Gender.male
+                      ? kActiveColor
+                      : kInActiveColor,
                   child: CardData(
                     title: 'MALE',
                     icon: FontAwesomeIcons.mars,
                   ),
                 ),
                 MyCard(
-                  color: kActiveColor,
+                  onPressed: () {
+                    setState(() {
+                      selectedGender = Gender.female;
+                    });
+                  },
+                  color: selectedGender == Gender.female
+                      ? kActiveColor
+                      : kInActiveColor,
                   child: CardData(
                     title: 'FEMALE',
                     icon: FontAwesomeIcons.venus,
@@ -74,3 +90,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+enum Gender { male, female }
