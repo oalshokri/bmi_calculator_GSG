@@ -14,6 +14,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   Gender? selectedGender;
+  int height = 120;
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +61,39 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           MyCard(
             color: kInActiveColor,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Height'.toUpperCase(),
+                  style: kTitleTextStyle,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: [
+                    Text(
+                      height.toString(),
+                      style: kNumTextStyle,
+                    ),
+                    Text(
+                      'cm',
+                      style: kTitleTextStyle,
+                    ),
+                  ],
+                ),
+                Slider(
+                    max: 220,
+                    min: 120,
+                    value: height.toDouble(),
+                    onChanged: (value) {
+                      setState(() {
+                        height = value.round();
+                      });
+                    })
+              ],
+            ),
           ),
           Expanded(
             child: Row(
