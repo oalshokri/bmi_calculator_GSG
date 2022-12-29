@@ -1,5 +1,7 @@
+import 'package:bmi_calculator/componants/card_data.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'componants/my_card.dart';
 
@@ -24,10 +26,18 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 MyCard(
-                  color: kInActiveColor,
+                  color: kActiveColor,
+                  child: CardData(
+                    title: 'MALE',
+                    icon: FontAwesomeIcons.mars,
+                  ),
                 ),
                 MyCard(
-                  color: kInActiveColor,
+                  color: kActiveColor,
+                  child: CardData(
+                    title: 'FEMALE',
+                    icon: FontAwesomeIcons.venus,
+                  ),
                 ),
               ],
             ),
