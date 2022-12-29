@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData.dark().copyWith(
-        textTheme: TextTheme().copyWith(button: TextStyle(fontSize: 24)),
+        textTheme: TextTheme().copyWith(),
         appBarTheme: AppBarTheme(
           backgroundColor: kPrimaryColor,
         ),

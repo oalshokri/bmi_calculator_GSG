@@ -3,6 +3,7 @@ import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'componants/my_FAB.dart';
 import 'componants/my_card.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -15,6 +16,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   Gender? selectedGender;
   int height = 120;
+  int weight = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -83,15 +85,24 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
-                Slider(
-                    max: 220,
-                    min: 120,
-                    value: height.toDouble(),
-                    onChanged: (value) {
-                      setState(() {
-                        height = value.round();
-                      });
-                    })
+                SliderTheme(
+                  data: SliderThemeData(
+                      trackHeight: 1,
+                      activeTrackColor: Colors.white,
+                      thumbColor: Color(0xFFfd0225),
+                      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15),
+                      overlayColor: Color(0x1ffd0225),
+                      inactiveTrackColor: kActiveColor),
+                  child: Slider(
+                      max: 220,
+                      min: 120,
+                      value: height.toDouble(),
+                      onChanged: (value) {
+                        setState(() {
+                          height = value.round();
+                        });
+                      }),
+                )
               ],
             ),
           ),
@@ -100,10 +111,32 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 MyCard(
-                  color: kActiveColor,
+                  color: kInActiveColor,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        'WEIGHT',
+                        style: kTitleTextStyle,
+                      ),
+                      Text(
+                        '$weight',
+                        style: kNumTextStyle,
+                      ),
+                      MyFloatingBtn(
+                        icon: FontAwesomeIcons.plus,
+                        color: kActiveColor,
+                        onPressed: () {
+                          setState(() {
+                            weight++;
+                          });
+                        },
+                      )
+                    ],
+                  ),
                 ),
                 MyCard(
-                  color: kActiveColor,
+                  color: kInActiveColor,
                 ),
               ],
             ),
@@ -116,7 +149,8 @@ class _MyHomePageState extends State<MyHomePage> {
             width: double.infinity,
             child: Text(
               'CALCULATE',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.headline6,
+              // style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           )
         ],
